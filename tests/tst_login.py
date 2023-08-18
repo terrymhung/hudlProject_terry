@@ -62,7 +62,6 @@ def login_with_credentials(username, password):
         username: The username.
         password: The password.
     """
-
     # Enter the username and password.
     uname = driver.find_element(By.ID, "email")
     uname.send_keys(username)
@@ -90,7 +89,6 @@ def test_login_with_invalid_credentials():
     """
     Tests the login process with invalid credentials.
     """
-
     username = "terrymhung@gmail.com"
     password = "invalid_password"
 
@@ -99,11 +97,11 @@ def test_login_with_valid_credentials():
     """
     Tests the login process with valid credentials.
     """
-
     username = "terrymhung@gmail.com"
     password = "pass4Hudl"
 
     login_with_credentials(username, password)
+    
 if __name__ == "__main__":
 
     # Test a failed login attempt.
