@@ -9,9 +9,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 url = "https://identity.hudl.com/login?state=hKFo2SBhcXY1NXdscXZLTUxRbU5WcldLeEVZU3JEWWhTM0gyRqFupWxvZ2luo3RpZNkgZFRURVZOQ3NTNE9SM0hoVnRveDVSUkt6b1AwUlBHZGmjY2lk2SBuMTNSZmtIektvemFOeFdDNWRaUW9iZVdHZjRXalNuNQ&client=n13RfkHzKozaNxWC5dZQobeWGf4WjSn5&protocol=oauth2&response_type=id_token&redirect_uri=https%3A%2F%2Fwww.hudl.com%2Fapp%2Fusers%2Foidc%2Fcallback&scope=openid%20profile%20email&nonce=YtQk5eC%2FkqsZ87kIIIq5LgHoS%2BqSMJQaGkd%2BNtxDWYA%3D&response_mode=form_post&screen_hint="
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
-# Open the Hudl login page.
+# Open the Hudl login page and maximize window.
 driver.get(url)
 driver.maximize_window()
+
 def forgot_password():
     """
     Logs in to the Hudl forgot password page.
@@ -101,7 +102,7 @@ def test_login_with_valid_credentials():
     password = "pass4Hudl"
 
     login_with_credentials(username, password)
-    
+
 if __name__ == "__main__":
 
     # Test a failed login attempt.
