@@ -13,46 +13,28 @@ driver.get(url)
 driver.maximize_window()
 
 
-def forgot_password():
+def clear_input_fields():
     """
-    Logs in to the Hudl forgot password page.
-    """
-
-    # Click the Forgot Password link.
-    forgot_password_link = driver.find_element("id", "forgot-password")
-    forgot_password_link.click()
-
-    # Wait 2 seconds for the Forgot Password page to load.
-    time.sleep(2)
-
-    # Verify that the Forgot Password page was opened.
-    if driver.title == "Forgot Password":
-        print("[+] Forgot Password page opened")
-        # Navigate back to log in page
-        forget_back_to_login = driver.find_element(By.CLASS_NAME, "uni-button--minimal")
-        forget_back_to_login.click()
-    else:
-        print("[-] Forgot Password link failed")
-
-
-def create_account():
-    """
-    Opens the create account page.
+    Clears all input fields in the specified web driver.
     """
 
-    # Click the Create Account link.
-    driver.find_element(By.ID, "btn-show-signup").click()
+    # Get email field.
+    username_input_fields = driver.find_elements(By.ID, "email")
 
-    # Wait for the create account page to load.
-    time.sleep(2)
+    # Clear username field.
+    for input_field in username_input_fields:
+        if input_field.is_enabled():
+            input_field.clear()
 
-    # Verify that the create account page was opened.
-    if driver.title == "Sign Up":
-        print("[+] Create Account page opened")
-        # Navigate back to log in page
-        driver.find_element(By.CLASS_NAME, "uni-button--minimal").click()
-    else:
-        print("[-] Create Account link failed")
+    # Get Password field
+    password_input_fields = driver.find_elements(By.ID, "password")
+
+    # Clear password field.
+    for input_field in password_input_fields:
+        if input_field.is_enabled():
+            input_field.clear()
+
+    time.sleep(4)
 
 
 def login_with_credentials(username, password):
@@ -92,6 +74,26 @@ def test_login_with_invalid_credentials():
     """
     username = "terrymhung@gmail.com"
     password = "invalid_password"
+
+    login_with_credentials(username, password)
+
+
+def test_login_only_username():
+    """
+    Tests the login process with invalid credentials.
+    """
+    username = "terrymhung@gmail.com"
+    password = ""
+
+    login_with_credentials(username, password)
+
+
+def test_login_with_no_credentials():
+    """
+    Tests the login process with invalid credentials.
+    """
+    username = ""
+    password = ""
 
     login_with_credentials(username, password)
 
